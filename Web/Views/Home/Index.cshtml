@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container mt-5">
+    <div class="row">
+
+        <form class="col-12">
+            <div class="form-group row">
+                <div class="col-6">
+                    <label for="txtProposalNo">Teklif No</label>
+                    <input type="text" class="form-control" name="txtProposalNo" id="txtProposalNo" value="200200022183057"/>
+                </div>
+
+
+                <div class="col-6">
+                    <label for="txtRenewalNo">Yenileme No</label>
+                    <input type="text" class="form-control" name="txtRenewalNo" id="txtRenewalNo" value="0" />
+                </div>
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-6">
+                    <label for="txtEndorsNo">Zeyil No</label>
+                    <input type="text" class="form-control" name="txtEndorsNo" id="txtEndorsNo" value="0" />
+                </div>
+
+
+                <div class="col-6">
+                    <label for="txtProductNo">Teklif No</label>
+                    <input type="text" class="form-control" name="txtProductNo" id="txtProductNo" value="112" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12">
+                    <a href="#" class="btn btn-primary float-right" id="btnReport">Sorgula</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="card-group col-12" id="proposalResults">
+           @{
+               await Html.RenderPartialAsync("_PartialProposalStatusTable", new ProposalStatusModel { StatusType = Web.Common.Constants.PROPOSAL_STATUS_TYPES.POSITIVE});
+               await Html.RenderPartialAsync("_PartialProposalStatusTable", new ProposalStatusModel { StatusType = Web.Common.Constants.PROPOSAL_STATUS_TYPES.INFORMATION });
+               await Html.RenderPartialAsync("_PartialProposalStatusTable", new ProposalStatusModel { StatusType = Web.Common.Constants.PROPOSAL_STATUS_TYPES.NEGATIVE });
+                   }
+        </div>
+    </div>
+
+</div>

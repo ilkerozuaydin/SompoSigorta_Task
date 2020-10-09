@@ -1,0 +1,50 @@
+﻿@model ProposalStatusModel
+
+@{
+    var statusColor = "";
+    var statusText = "";
+    var cardId = "";
+    switch (Model.StatusType)
+    {
+        case Web.Common.Constants.PROPOSAL_STATUS_TYPES.POSITIVE:
+            cardId = "crdPositive";
+            statusColor = "success";
+            statusText = "Olumlu";
+            break;
+        case Web.Common.Constants.PROPOSAL_STATUS_TYPES.INFORMATION:
+            cardId = "crdInformation";
+            statusColor = "info";
+            statusText = "Bilgi";
+            break;
+        case Web.Common.Constants.PROPOSAL_STATUS_TYPES.NEGATIVE:
+            cardId = "crdNegative";
+            statusColor = "danger";
+            statusText = "Olumsuz";
+            break;
+        default:
+            break;
+    }
+}
+<div class="card text-center" id="@cardId">
+    <div class="card-body">
+        <h3 class="card-title text-@statusColor">@statusText</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Kod</th>
+                    <th scope="col">Açıklama</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TableData)
+                {
+                    <tr>
+                        <th scope="row">@item.Code</th>
+                        <td>@item.Description </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
